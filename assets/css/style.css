@@ -1,0 +1,33 @@
+body {
+    -webkit-transition: all 5s;
+    transition: all 5s;
+    background-color: black;
+    color: rebeccapurple;
+    text-align: center;
+}
+
+.image {
+    height: 340px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (max-width: 980px) {
+    body {
+      background-color: lightcoral;
+    }
+
+    @media only screen and (max-width: 768px) {
+      body {
+        background-color: yellow;
+      }
+    }
+    
+    @media only screen and (max-width: 640px) {
+      body {
+        background-color: lightblue;
+      }
+    }
+
+  }
