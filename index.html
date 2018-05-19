@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
+    <title>The Psychic Game</title>
+</head>
+
+<body>
+
+    <img src="http://www.e-tarocchi.com/crystalball/images/crystalBall1.jpg" class="image" alt="psychic">
+
+
+    <div id="psychicAct">
+        <h1>The Guessing Game</h1>
+
+        <h3>Wins:
+            <p id="wins"></p>
+        </h3>
+
+        <h3>Losses:
+            <p id="losses"></p>
+        </h3>
+
+        <h3>Guess left:
+            <p id="guessLeft"></p>
+        </h3>
+
+        <p>Guess what letter I'm thinking of:</p>
+        <p id="guessed"></p>
+
+
+    </div>
+
+    <script type="text/javascript">
+
+        alert("Let's see if you can guess what letter key I'm thinking of, you have 12 tries!")
+
+        var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft, guessedLetters, letterToGuess;
+
+        resetGame();
+
+        document.onkeyup = function (keyPressed) {
+            var guess = keyPressed.key;
+            if (guess === letterToGuess) {
+                win();
+                alert("You got it right, David Blaine would be proud!")
+
+            } else if (guessesLeft - 1 === 0) {
+                lost();
+                alert("Hmmmm maybe you should try again!")
+
+            } else {
+                fail(guess);
+            }
+
+            display();
+        }
+
+        function display() {
+            var winsOcurred = document.getElementById("wins");
+            var lossesOcurred = document.getElementById("losses");
+            var guessLeft = document.getElementById("guessLeft");
+            var letterGuessed = document.getElementById("guessed");
+            winsOcurred.innerHTML = wins;
+            lossesOcurred.innerHTML = losses;
+            guessLeft.innerHTML = guessesLeft;
+            letterGuessed.innerHTML = guessedLetters + (",");
+        }
+
+        function win() {
+            wins++;
+            resetGame();
+        }
+
+        function lost() {
+            losses++;
+            resetGame();
+        }
+
+        function fail(letter) {
+            guessesLeft--;
+            guessedLetters.push(letter);
+        }
+
+        function resetGame() {
+            guessesLeft = 12;
+            guessedLetters = [];
+            letterToGuess = letters[Math.floor(Math.random() * letters.length)];
+            console.log("Letter to guess: " + letterToGuess);
+        }
+    </script>
+
+
+</body>
+
+
+</html>
